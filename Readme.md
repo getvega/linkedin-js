@@ -41,16 +41,16 @@ app.get('/auth', function (req, res) {
 app.post('/message', function (req, res) {
   linkedin_client.apiCall('POST', '/people/~/shares',
     {
-      token: {
-        oauth_token_secret: req.session.token.oauth_token_secret
-      , oauth_token: req.session.token.oauth_token
-      }
-    , share: {
-        comment: req.param('message')
-      , visibility: {code: 'anyone'}
-      }
-    }
-  , function (error, result) {
+        oauth_token_secret: req.session.token.oauth_token_secret, 
+        oauth_token: req.session.token.oauth_token
+    }, 
+    {
+        "comment": 'Test api message',
+        "visibility": {
+             "code": "anyone"
+        }
+    }, 
+    function (error, result) {
       res.render('message_sent');
     }
   );
